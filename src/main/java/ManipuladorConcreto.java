@@ -1,3 +1,5 @@
+import java.util.Locale;
+
 public class ManipuladorConcreto extends ManipuladorCompraBase {
     private double limiteAprovacao;
 
@@ -8,7 +10,7 @@ public class ManipuladorConcreto extends ManipuladorCompraBase {
     @Override
     public String processarSolicitacao(SolicitacaoCompra solicitacao) {
         if (solicitacao.getValor() <= limiteAprovacao) {
-            return "Solicitação aprovada por um ManipuladorConcreto com limite de " + limiteAprovacao;
+            return String.format(Locale.US, "Solicitação aprovada por um ManipuladorConcreto com limite de %.1f", limiteAprovacao);
         } else if (getProximo() != null) {
             return getProximo().processarSolicitacao(solicitacao);
         } else {
